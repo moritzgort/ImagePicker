@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A278b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,20 +17,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BK5-5K-8Iw">
-                                <rect key="frame" x="42" y="115" width="236" height="236"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.89999999999999991" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BK5-5K-8Iw">
+                                <rect key="frame" x="0.0" y="44" width="320" height="480"/>
                                 <animations/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mkb-GP-AZ5">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mkb-GP-AZ5">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Fpv-uQ-H9s"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="add" id="GqP-Uv-4zO">
                                         <connections>
                                             <action selector="pickAnImage:" destination="vXZ-lx-hvc" id="xlf-j4-1l0"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="231" style="plain" systemItem="fixedSpace" id="ZvA-BG-6w7"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Enr-8L-cMd"/>
                                     <barButtonItem systemItem="camera" id="m7w-PU-Zo1">
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="vXZ-lx-hvc" id="5F9-8G-GAa"/>
@@ -38,14 +42,37 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zax-gd-2bf">
-                                <rect key="frame" x="130" y="115" width="60" height="33"/>
+                                <rect key="frame" x="16" y="61" width="288" height="33"/>
                                 <animations/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpb-uT-ZW0">
-                                <rect key="frame" x="98" y="318" width="123" height="33"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1D-9O-Twe">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ofy-sI-feU"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="MemeMe" id="rF0-da-Edb">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="7Sb-ME-uIV">
+                                            <connections>
+                                                <action selector="shareButtonPressed:" destination="vXZ-lx-hvc" id="xgk-gE-Viu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="g5L-gY-DXN">
+                                            <connections>
+                                                <action selector="cancelButtonPressed:" destination="vXZ-lx-hvc" id="ufl-cP-07X"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpb-uT-ZW0">
+                                <rect key="frame" x="16" y="478" width="288" height="33"/>
+                                <animations/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="27"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
@@ -53,18 +80,32 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="Gpb-uT-ZW0" secondAttribute="centerY" constant="-50.5" id="G1D-Od-kMV"/>
-                            <constraint firstAttribute="centerX" secondItem="BK5-5K-8Iw" secondAttribute="centerX" id="Odg-GK-YcI"/>
-                            <constraint firstAttribute="centerX" secondItem="Zax-gd-2bf" secondAttribute="centerX" id="ZSa-fh-PCe"/>
-                            <constraint firstAttribute="centerX" secondItem="Gpb-uT-ZW0" secondAttribute="centerX" id="kq5-DQ-1n6"/>
-                            <constraint firstAttribute="centerY" secondItem="BK5-5K-8Iw" secondAttribute="centerY" constant="51" id="laZ-Zb-w2S"/>
-                            <constraint firstAttribute="centerY" secondItem="Zax-gd-2bf" secondAttribute="centerY" constant="152.5" id="zUJ-kz-kNc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BK5-5K-8Iw" secondAttribute="trailing" constant="-16" id="2mH-AG-g7C"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="top" secondItem="Q1D-9O-Twe" secondAttribute="bottom" constant="17" id="FT3-qV-Ra2"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Fa0-as-bA9"/>
+                            <constraint firstItem="Q1D-9O-Twe" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="Fv2-b0-0SJ"/>
+                            <constraint firstItem="Gpb-uT-ZW0" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="Hnt-1U-mAl"/>
+                            <constraint firstItem="mkb-GP-AZ5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="IQu-I6-sQZ"/>
+                            <constraint firstItem="mkb-GP-AZ5" firstAttribute="top" secondItem="Gpb-uT-ZW0" secondAttribute="bottom" constant="13" id="JXS-7l-Jii"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="top" secondItem="Q1D-9O-Twe" secondAttribute="bottom" constant="17" id="LYh-k6-ukV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mkb-GP-AZ5" secondAttribute="trailing" constant="-16" id="MPf-Dg-FX1"/>
+                            <constraint firstItem="BK5-5K-8Iw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="MRI-es-lBg"/>
+                            <constraint firstItem="Q1D-9O-Twe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="TDy-WV-dF7"/>
+                            <constraint firstItem="Gpb-uT-ZW0" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="UJB-GC-xu0"/>
+                            <constraint firstItem="0Uv-EP-kyg" firstAttribute="top" secondItem="mkb-GP-AZ5" secondAttribute="bottom" id="Vsc-5N-58a"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="ZIE-9L-PNw"/>
+                            <constraint firstItem="BK5-5K-8Iw" firstAttribute="top" secondItem="Q1D-9O-Twe" secondAttribute="bottom" id="fhb-Se-EjE"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="i9r-nK-mCT"/>
+                            <constraint firstItem="mkb-GP-AZ5" firstAttribute="top" secondItem="BK5-5K-8Iw" secondAttribute="bottom" id="nmN-ac-RqZ"/>
+                            <constraint firstItem="Zax-gd-2bf" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="qW9-UH-rL8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Q1D-9O-Twe" secondAttribute="trailing" constant="-16" id="yyx-qq-4Lo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomTextField" destination="Gpb-uT-ZW0" id="gu9-HG-yac"/>
                         <outlet property="cameraButton" destination="m7w-PU-Zo1" id="tUB-vd-puR"/>
                         <outlet property="imageView" destination="BK5-5K-8Iw" id="fMj-jA-E46"/>
+                        <outlet property="shareButton" destination="7Sb-ME-uIV" id="rbv-Gw-o70"/>
                         <outlet property="topTextField" destination="Zax-gd-2bf" id="pUA-LA-Nxq"/>
                     </connections>
                 </viewController>
