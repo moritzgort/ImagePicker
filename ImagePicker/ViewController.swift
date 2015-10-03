@@ -19,6 +19,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var viewIsMovedUp = false
     
+    var tempTopText = "TOP"
+    var tempBottomText = "BOTTOM"
+    var tempImage = UIImage()
+    
     let memeTextAttributes = [
         NSStrokeColorAttributeName: UIColor.blackColor(),
         NSForegroundColorAttributeName: UIColor.whiteColor(),
@@ -41,15 +45,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
         bottomTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
 
-        
         shareButton.enabled = false
+        
+        topTextField.text = tempTopText
+        bottomTextField.text = tempBottomText
+        imageView.image = tempImage
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotification()
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -80,7 +86,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func subscribeToKeyboardNotification() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-        println("subscribed")
     }
     
     func textFieldInBoundaries(notification: NSNotification) -> Bool {
@@ -99,7 +104,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        println("kbHeight")
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.CGRectValue().height
@@ -108,13 +112,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func unsubscribeFromKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
-        println("unsubscribe")
     }
     
     
 // MARK: Save Finished Image
     func save() {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, memeImage: generateMemedImage())
+        
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
@@ -157,11 +164,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @IBAction func shareButtonPressed(sender: UIBarButtonItem) {
         let activityVC = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
-        presentViewController(activityVC, animated: true, completion: nil)
-        activityVC.completionWithItemsHandler = {
-            (s: String!, ok: Bool, items: [AnyObject]!, err: NSError!) -> Void in self.save()
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }
+        presentViewController(activityVC, animated: true, completion: {
+            () -> Void in self.save()
+        })
     }
     
 //MARK: Keyboard Dismiss
@@ -170,7 +175,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         view.endEditing(true)
     }
     
@@ -179,6 +184,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.text = "BOTTOM"
         imageView.image = nil
         shareButton.enabled = false
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
