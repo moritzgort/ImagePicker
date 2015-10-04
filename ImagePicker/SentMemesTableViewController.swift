@@ -15,18 +15,15 @@ class SentMemesTableViewController: UITableViewController {
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    var valueToPass: UIImage!
+    
     override func viewDidAppear(animated: Bool) {
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -50,16 +47,6 @@ class SentMemesTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let controller = self.storyboard?.instantiateViewControllerWithIdentifier("CreateMemeVC") as! ViewController
-        controller.tempTopText = memes[indexPath.item].topText
-        controller.tempBottomText = memes[indexPath.item].bottomText
-        controller.tempImage = memes[indexPath.item].image
-        controller.editOrNew = "EDIT"
-        
-        self.presentViewController(controller, animated: true, completion: nil)
-    }
-    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
@@ -70,10 +57,21 @@ class SentMemesTableViewController: UITableViewController {
         }
     }
     
-    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! ViewController
-        controller.editOrNew = "NEW"
-        self.presentViewController(controller, animated: true, completion: nil)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        valueToPass = memes[indexPath.row].image
+        performSegueWithIdentifier("tableToDisplay", sender: self)
     }
-
+    
+    @IBAction func addButtonPressed(sender: UIBarButtonItem) {
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! MemeEditorViewController
+        controller.editOrNew = "NEW"
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tableToDisplay" {
+            let controller = segue.destinationViewController as! DisplayMemeViewController
+            controller.finishedImage = valueToPass
+        }
+    }
 }

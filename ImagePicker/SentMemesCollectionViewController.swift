@@ -19,6 +19,8 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         return (UIApplication.sharedApplication().delegate as! AppDelegate).memes
     }
     
+    var valueToPass: UIImage!
+    
     var numberOfItemsInRow: CGFloat!
     var ownWidth: CGFloat!
     var portrait: Bool = true
@@ -26,11 +28,11 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     let space: CGFloat = 3.0
     
     override func viewDidAppear(animated: Bool) {
-        self.collectionView!.reloadData()
+        collectionView!.reloadData()
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.collectionView?.reloadData()
+        collectionView?.reloadData()
     }
     
     override func viewDidLoad() {
@@ -42,14 +44,14 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     
     func orientationChanged() {
         portrait = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? true : false
-        ownWidth = self.view.frame.width
+        ownWidth = view.frame.width
         numberOfItemsInRow = portrait ? 3.0 : 5.0
         dimension = (ownWidth - ((numberOfItemsInRow - 1) * space)) / numberOfItemsInRow
         
         collectionViewFlowLayout.minimumInteritemSpacing = space
         collectionViewFlowLayout.minimumLineSpacing = space
         collectionViewFlowLayout.itemSize = CGSizeMake(dimension, dimension)
-        self.collectionView!.reloadData()
+        collectionView!.reloadData()
     }
 
     // MARK: UICollectionViewDataSource
@@ -69,19 +71,21 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! ViewController
-        controller.tempTopText = memes[indexPath.item].topText
-        controller.tempBottomText = memes[indexPath.item].bottomText
-        controller.tempImage = memes[indexPath.item].image
-        controller.editOrNew = "EDIT"
-        
-        self.presentViewController(controller, animated: true, completion: nil)
+        valueToPass = memes[indexPath.row].image
+        performSegueWithIdentifier("collectionToDisplay", sender: self)
     }
     
     @IBAction func addMemeButtonPressed(sender: UIBarButtonItem) {
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! ViewController
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! MemeEditorViewController
         controller.editOrNew = "NEW"
-        self.presentViewController(controller, animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "collectionToDisplay" {
+            let controller = segue.destinationViewController as! DisplayMemeViewController
+            controller.finishedImage = valueToPass
+        }
     }
 
 }

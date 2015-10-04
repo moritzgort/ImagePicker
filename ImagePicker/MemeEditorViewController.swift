@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var shareButton: UIBarButtonItem!
@@ -66,10 +66,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         view.addGestureRecognizer(leftSwipe)
         view.addGestureRecognizer(rightSwipe)
-        
-        for family in UIFont.familyNames() as [String] {
-            print("fam: \(family) at index")
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,10 +78,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
 //MARK: Move up view when pressed on keyboard
     
     func keyboardWillShow(notification: NSNotification) {
