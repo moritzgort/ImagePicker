@@ -16,6 +16,12 @@
 		8E42AA2F1B9F18700054AEAA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E42AA2D1B9F18700054AEAA /* LaunchScreen.xib */; };
 		8E42AA3B1B9F18700054AEAA /* ImagePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E42AA3A1B9F18700054AEAA /* ImagePickerTests.swift */; };
 		8E82973D1BB31A8B003129EF /* SentMemesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E82973C1BB31A8B003129EF /* SentMemesCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8E8CEE881BC017FB00071E29 /* SentMemesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8CEE871BC017FA00071E29 /* SentMemesTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		8E8CEE8A1BC15E4F00071E29 /* Gill Sans Ultra Bold in Resources */ = {isa = PBXBuildFile; fileRef = 8E8CEE891BC15E4F00071E29 /* Gill Sans Ultra Bold */; settings = {ASSET_TAGS = (); }; };
+		8E8CEE8F1BC15E6A00071E29 /* Blackmoor LET Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 8E8CEE8D1BC15E6A00071E29 /* Blackmoor LET Fonts */; settings = {ASSET_TAGS = (); }; };
+		8E8CEE901BC15E6A00071E29 /* BlackoakStd.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8E8CEE8E1BC15E6A00071E29 /* BlackoakStd.otf */; settings = {ASSET_TAGS = (); }; };
+		8E8CEE911BC15ED800071E29 /* Futura.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 8E8CEE8B1BC15E5900071E29 /* Futura.ttc */; };
+		8E8CEE921BC15EE300071E29 /* GillSans.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 8E8CEE8C1BC15E5900071E29 /* GillSans.ttc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		8E42AA391B9F18700054AEAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E42AA3A1B9F18700054AEAA /* ImagePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerTests.swift; sourceTree = "<group>"; };
 		8E82973C1BB31A8B003129EF /* SentMemesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesCollectionViewController.swift; sourceTree = "<group>"; };
+		8E8CEE871BC017FA00071E29 /* SentMemesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemesTableViewController.swift; sourceTree = "<group>"; };
+		8E8CEE891BC15E4F00071E29 /* Gill Sans Ultra Bold */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Gill Sans Ultra Bold"; sourceTree = "<group>"; };
+		8E8CEE8B1BC15E5900071E29 /* Futura.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Futura.ttc; sourceTree = "<group>"; };
+		8E8CEE8C1BC15E5900071E29 /* GillSans.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = GillSans.ttc; sourceTree = "<group>"; };
+		8E8CEE8D1BC15E6A00071E29 /* Blackmoor LET Fonts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Blackmoor LET Fonts"; sourceTree = "<group>"; };
+		8E8CEE8E1BC15E6A00071E29 /* BlackoakStd.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackoakStd.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +99,7 @@
 				8E42AA261B9F18700054AEAA /* ViewController.swift */,
 				8E2E25D01BBB32740050F32F /* SentMemesCollectionViewCell.swift */,
 				8E42AA281B9F18700054AEAA /* Main.storyboard */,
+				8E8CEE871BC017FA00071E29 /* SentMemesTableViewController.swift */,
 				8E82973C1BB31A8B003129EF /* SentMemesCollectionViewController.swift */,
 				8E2DC05F1BA2F73F008FD194 /* Meme.swift */,
 				8E42AA2B1B9F18700054AEAA /* Images.xcassets */,
@@ -99,6 +112,11 @@
 		8E42AA221B9F18700054AEAA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8E8CEE8D1BC15E6A00071E29 /* Blackmoor LET Fonts */,
+				8E8CEE8E1BC15E6A00071E29 /* BlackoakStd.otf */,
+				8E8CEE8B1BC15E5900071E29 /* Futura.ttc */,
+				8E8CEE8C1BC15E5900071E29 /* GillSans.ttc */,
+				8E8CEE891BC15E4F00071E29 /* Gill Sans Ultra Bold */,
 				8E42AA231B9F18700054AEAA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -203,8 +221,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8CEE921BC15EE300071E29 /* GillSans.ttc in Resources */,
+				8E8CEE911BC15ED800071E29 /* Futura.ttc in Resources */,
 				8E42AA2A1B9F18700054AEAA /* Main.storyboard in Resources */,
+				8E8CEE901BC15E6A00071E29 /* BlackoakStd.otf in Resources */,
 				8E42AA2F1B9F18700054AEAA /* LaunchScreen.xib in Resources */,
+				8E8CEE8F1BC15E6A00071E29 /* Blackmoor LET Fonts in Resources */,
+				8E8CEE8A1BC15E4F00071E29 /* Gill Sans Ultra Bold in Resources */,
 				8E42AA2C1B9F18700054AEAA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E2E25D11BBB32740050F32F /* SentMemesCollectionViewCell.swift in Sources */,
+				8E8CEE881BC017FB00071E29 /* SentMemesTableViewController.swift in Sources */,
 				8E2DC0601BA2F73F008FD194 /* Meme.swift in Sources */,
 				8E42AA271B9F18700054AEAA /* ViewController.swift in Sources */,
 				8E82973D1BB31A8B003129EF /* SentMemesCollectionViewController.swift in Sources */,

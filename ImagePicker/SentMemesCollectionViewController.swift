@@ -29,6 +29,10 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         self.collectionView!.reloadData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.collectionView?.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         orientationChanged()
@@ -37,7 +41,6 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     func orientationChanged() {
-        print("orientation changed")
         portrait = UIApplication.sharedApplication().statusBarOrientation.isPortrait ? true : false
         ownWidth = self.view.frame.width
         numberOfItemsInRow = portrait ? 3.0 : 5.0
@@ -54,10 +57,8 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
-
-
+    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return memes.count
     }
 
@@ -72,8 +73,15 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         controller.tempTopText = memes[indexPath.item].topText
         controller.tempBottomText = memes[indexPath.item].bottomText
         controller.tempImage = memes[indexPath.item].image
-        controller.navigationItem.hidesBackButton = true
-        self.navigationController?.pushViewController(controller, animated: true)
+        controller.editOrNew = "EDIT"
+        
+        self.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    @IBAction func addMemeButtonPressed(sender: UIBarButtonItem) {
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("CreateMemeVC") as! ViewController
+        controller.editOrNew = "NEW"
+        self.presentViewController(controller, animated: true, completion: nil)
     }
 
 }

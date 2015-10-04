@@ -40,5 +40,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Blackmoor LET Fonts</string>
+		<string>BlackoakStd.otf</string>
+		<string>Futura.ttc</string>
+		<string>GillSans.ttc</string>
+		<string>Gill Sans Ultra Bold</string>
+	</array>
 </dict>
 </plist>
