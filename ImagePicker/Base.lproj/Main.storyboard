@@ -83,11 +83,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvo-hk-mWL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvo-hk-mWL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <animations/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-vp-bqv">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-vp-bqv">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <animations/>
                                 <items>
@@ -108,13 +108,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HSB-vp-bqv" firstAttribute="leading" secondItem="hfH-eo-8c0" secondAttribute="leadingMargin" constant="-20" id="C8Z-rJ-F8E"/>
-                            <constraint firstAttribute="trailing" secondItem="wvo-hk-mWL" secondAttribute="trailing" id="Inb-cw-KXA"/>
-                            <constraint firstItem="wvo-hk-mWL" firstAttribute="leading" secondItem="hfH-eo-8c0" secondAttribute="leading" id="Zz9-MB-Vf3"/>
-                            <constraint firstItem="wvo-hk-mWL" firstAttribute="bottom" secondItem="xcP-zo-OtH" secondAttribute="top" id="qSd-Jz-Taw"/>
-                            <constraint firstItem="wvo-hk-mWL" firstAttribute="top" secondItem="hfH-eo-8c0" secondAttribute="top" id="sQ8-cB-MYR"/>
-                            <constraint firstItem="HSB-vp-bqv" firstAttribute="bottom" secondItem="hfH-eo-8c0" secondAttribute="bottomMargin" id="sw0-Lk-apA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HSB-vp-bqv" secondAttribute="trailing" constant="-20" id="uNB-MN-j1M"/>
+                            <constraint firstItem="HSB-vp-bqv" firstAttribute="top" secondItem="xcP-zo-OtH" secondAttribute="top" id="D93-qK-SFE"/>
+                            <constraint firstItem="wvo-hk-mWL" firstAttribute="leading" secondItem="hfH-eo-8c0" secondAttribute="leading" id="MrM-z1-Vva"/>
+                            <constraint firstItem="wvo-hk-mWL" firstAttribute="top" secondItem="hfH-eo-8c0" secondAttribute="top" id="PHC-70-sTQ"/>
+                            <constraint firstAttribute="trailing" secondItem="wvo-hk-mWL" secondAttribute="trailing" id="Q2D-9a-TOf"/>
+                            <constraint firstItem="wvo-hk-mWL" firstAttribute="bottom" secondItem="HSB-vp-bqv" secondAttribute="bottom" id="Rcz-mt-VeC"/>
+                            <constraint firstItem="wvo-hk-mWL" firstAttribute="trailing" secondItem="HSB-vp-bqv" secondAttribute="trailing" id="XHA-TA-Sla"/>
+                            <constraint firstItem="wvo-hk-mWL" firstAttribute="leading" secondItem="HSB-vp-bqv" secondAttribute="leading" id="b2i-Cq-bma"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -149,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="opp-zs-Uw0">
@@ -157,7 +157,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
