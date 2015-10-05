@@ -9,7 +9,7 @@
         <!--Sent Memes Collection-->
         <scene sceneID="Kb9-dY-3Dw">
             <objects>
-                <collectionViewController title="Sent Memes Collection" id="BdP-62-p1c" customClass="SentMemesCollectionViewController" customModule="ImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SentMemeCollectionVC" title="Sent Memes Collection" id="BdP-62-p1c" customClass="SentMemesCollectionViewController" customModule="ImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="ZVS-Uv-NWq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,9 +64,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionViewFlowLayout" destination="Ulo-0u-E0a" id="tLV-hO-moA"/>
-                        <segue destination="bkY-Du-VpO" kind="popover" identifier="collectionToDisplay" popoverAnchorView="N0i-PI-Bd1" id="rut-ch-pWm">
-                            <popoverArrowDirection key="popoverArrowDirection" right="YES"/>
-                        </segue>
+                        <segue destination="bkY-Du-VpO" kind="push" identifier="collectionToDisplay" id="rut-ch-pWm"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zq-8X-ECL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -76,7 +74,7 @@
         <!--Display Meme View Controller-->
         <scene sceneID="jFm-w0-KXv">
             <objects>
-                <viewController storyboardIdentifier="DisplayVC" id="bkY-Du-VpO" customClass="DisplayMemeViewController" customModule="ImagePicker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DisplayVC" hidesBottomBarWhenPushed="YES" id="bkY-Du-VpO" customClass="DisplayMemeViewController" customModule="ImagePicker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rcF-gh-8sY"/>
                         <viewControllerLayoutGuide type="bottom" id="xcP-zo-OtH"/>
@@ -85,20 +83,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wvo-hk-mWL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvo-hk-mWL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <animations/>
                             </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSB-vp-bqv">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <animations/>
+                                <items>
+                                    <barButtonItem systemItem="edit" id="Iw0-TY-Eor">
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="bkY-Du-VpO" id="aog-pc-TSn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="a0Q-Jk-rk1"/>
+                                    <barButtonItem systemItem="trash" id="jQt-yR-vCh">
+                                        <connections>
+                                            <action selector="deleteButtonPressed:" destination="bkY-Du-VpO" id="ksh-do-Ce0"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="HSB-vp-bqv" firstAttribute="leading" secondItem="hfH-eo-8c0" secondAttribute="leadingMargin" constant="-20" id="C8Z-rJ-F8E"/>
                             <constraint firstAttribute="trailing" secondItem="wvo-hk-mWL" secondAttribute="trailing" id="Inb-cw-KXA"/>
                             <constraint firstItem="wvo-hk-mWL" firstAttribute="leading" secondItem="hfH-eo-8c0" secondAttribute="leading" id="Zz9-MB-Vf3"/>
                             <constraint firstItem="wvo-hk-mWL" firstAttribute="bottom" secondItem="xcP-zo-OtH" secondAttribute="top" id="qSd-Jz-Taw"/>
                             <constraint firstItem="wvo-hk-mWL" firstAttribute="top" secondItem="hfH-eo-8c0" secondAttribute="top" id="sQ8-cB-MYR"/>
+                            <constraint firstItem="HSB-vp-bqv" firstAttribute="bottom" secondItem="hfH-eo-8c0" secondAttribute="bottomMargin" id="sw0-Lk-apA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HSB-vp-bqv" secondAttribute="trailing" constant="-20" id="uNB-MN-j1M"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="finishedMemeImageView" destination="wvo-hk-mWL" id="B4q-Pv-Uu1"/>
                     </connections>
@@ -159,9 +179,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="bkY-Du-VpO" kind="popover" identifier="tableToDisplay" popoverAnchorView="8gj-nj-u8r" id="Nyi-3h-DR9">
-                            <popoverArrowDirection key="popoverArrowDirection" right="YES"/>
-                        </segue>
+                        <segue destination="bkY-Du-VpO" kind="push" identifier="tableToDisplay" id="Nyi-3h-DR9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYm-XN-vlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -298,7 +316,6 @@
         <!--Item-->
         <scene sceneID="xDD-aa-97z">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tcJ-Dw-7SD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dla-8l-xnx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="m1w-ux-0jH"/>
                     <toolbarItems/>
@@ -312,13 +329,13 @@
                         <segue destination="BdP-62-p1c" kind="relationship" relationship="rootViewController" id="EWW-L0-xDv"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcJ-Dw-7SD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1009" y="199"/>
         </scene>
         <!--Item-->
         <scene sceneID="qP1-wj-wqo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XiV-MI-5gT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="n2M-xW-lDv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="7cA-It-A0q"/>
                     <toolbarItems/>
@@ -332,6 +349,7 @@
                         <segue destination="ttf-dx-9C4" kind="relationship" relationship="rootViewController" id="pUn-9F-msj"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XiV-MI-5gT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1009" y="928"/>
         </scene>

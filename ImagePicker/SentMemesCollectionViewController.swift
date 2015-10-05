@@ -20,6 +20,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     var valueToPass: UIImage!
+    var detailIndex: Int!
     
     var numberOfItemsInRow: CGFloat!
     var ownWidth: CGFloat!
@@ -71,7 +72,8 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        valueToPass = memes[indexPath.row].image
+        valueToPass = memes[indexPath.item].memeImage
+        detailIndex = indexPath.item
         performSegueWithIdentifier("collectionToDisplay", sender: self)
     }
     
@@ -85,6 +87,7 @@ class SentMemesCollectionViewController: UICollectionViewController, UICollectio
         if segue.identifier == "collectionToDisplay" {
             let controller = segue.destinationViewController as! DisplayMemeViewController
             controller.finishedImage = valueToPass
+            controller.index = detailIndex
         }
     }
 

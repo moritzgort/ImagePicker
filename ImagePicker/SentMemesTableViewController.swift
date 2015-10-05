@@ -16,6 +16,7 @@ class SentMemesTableViewController: UITableViewController {
     }
     
     var valueToPass: UIImage!
+    var detailIndex: Int!
     
     override func viewDidAppear(animated: Bool) {
         tableView.reloadData()
@@ -59,6 +60,7 @@ class SentMemesTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         valueToPass = memes[indexPath.row].image
+        detailIndex = indexPath.row
         performSegueWithIdentifier("tableToDisplay", sender: self)
     }
     
@@ -72,6 +74,7 @@ class SentMemesTableViewController: UITableViewController {
         if segue.identifier == "tableToDisplay" {
             let controller = segue.destinationViewController as! DisplayMemeViewController
             controller.finishedImage = valueToPass
+            controller.index = detailIndex
         }
     }
 }

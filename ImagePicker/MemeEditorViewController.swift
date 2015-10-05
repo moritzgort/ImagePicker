@@ -25,6 +25,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     var fontIndex = 12
     
+    var saved = 0
+    var imageIndex = 0
+    
     var imageSource: UIImagePickerControllerSourceType = UIImagePickerControllerSourceType.PhotoLibrary
     
     let memeTextAttributes = [
@@ -37,25 +40,19 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
 // MARK: 'ViewDid' Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
         
-        topTextField.textAlignment = .Center
-        bottomTextField.textAlignment = .Center
-        
+        setupTextField(topTextField)
+        setupTextField(bottomTextField)
         adjustFont()
         
-        topTextField.delegate = self
-        bottomTextField.delegate = self
+        saved = 0
         
-        topTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
-        bottomTextField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
-
-        shareButton.enabled = false
         if editOrNew == "EDIT" {
             topTextField.text = tempTopText
             bottomTextField.text = tempBottomText
             imageView.image = tempImage
+        } else {
+            shareButton.enabled = false
         }
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipes:"))
@@ -130,10 +127,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func save() {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, image: imageView.image!, memeImage: generateMemedImage())
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if editOrNew == "NEW" {
-            appDelegate.memes.append(meme)
-        } else {
-            appDelegate.memes[appDelegate.memes.count - 1] = meme
+        if saved == 0 {
+            if editOrNew == "NEW" {
+                appDelegate.memes.append(meme)
+            } else {
+                appDelegate.memes[appDelegate.memes.count - 1] = meme
+            }
+            saved++
         }
     }
     
@@ -160,7 +160,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             alert.addAction(UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default) {UIAlertAction in self.pickCameraImage()})
         }
         alert.addAction(UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.Default) {UIAlertAction in self.pickLibraryImage()})
-        self.showDetailViewController(alert, sender: self)
+        showDetailViewController(alert, sender: self)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
@@ -173,9 +173,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     
     @IBAction func shareButtonPressed(sender: UIBarButtonItem) {
         let activityVC = UIActivityViewController(activityItems: [generateMemedImage()], applicationActivities: nil)
-        presentViewController(activityVC, animated: true, completion: {
-            () -> Void in self.save()
-        })
+        activityVC.completionWithItemsHandler = {
+            (s: String?, ok: Bool, items: [AnyObject]?, err:NSError?) -> Void in self.save()
+        }
+        
+        presentViewController(activityVC, animated: true, completion: nil)
     }
     
 //MARK: Keyboard Dismiss
@@ -193,11 +195,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         bottomTextField.text = "BOTTOM"
         imageView.image = nil
         shareButton.enabled = false
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: {() -> Void in self.save()})
+        dismissViewControllerAnimated(true, completion: nil)
     }
 // MARK: Helper Functions
     
@@ -218,11 +220,11 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func handleSwipes(sender: UISwipeGestureRecognizer) {
         if (sender.direction == .Left) {
             if (fontIndex < (UIFont.familyNames().count - 1)) {
-                self.fontIndex++
+                fontIndex++
             }
         } else if (sender.direction == .Right) {
             if (fontIndex > 0) {
-                self.fontIndex--
+                fontIndex--
             }
         }
         adjustFont()
@@ -231,6 +233,13 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func adjustFont() {
         topTextField.font = UIFont(name: UIFont.familyNames()[fontIndex], size: 40)!
         bottomTextField.font = UIFont(name: UIFont.familyNames()[fontIndex], size: 40)!
+    }
+    
+    func setupTextField(textField: UITextField) {
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
+        textField.delegate = self
+        textField.autocapitalizationType = UITextAutocapitalizationType.AllCharacters
     }
     
     
